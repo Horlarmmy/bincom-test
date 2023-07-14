@@ -1,0 +1,19 @@
+<h1>New Polling Unit</h1>
+<form method="POST" action="{% url 'store_polling_unit_result' %}">
+  {% csrf_token %}
+  <label for="polling_unit_id">Polling Unit ID:</label>
+  <input type="number" id="polling_unit_id" name="polling_unit_id" required>
+  <label for="ward_id">Ward ID:</label>
+  <input type="number" id="ward_id" name="ward_id" required>
+  <label for="lga_id">LGA ID:</label>
+  <input type="number" id="lga_id" name="lga_id" required>
+  <!-- Add other fields as per your table structure -->
+
+  <h2>Enter Results for All Parties:</h2>
+  {% for party in parties %}
+    <label for="{{ party.partyid }}">{{ party.partyname }}:</label>
+    <input type="number" id="{{ party.partyid }}" name="{{ party.partyid }}" required>
+  {% endfor %}
+
+  <button type="submit">Submit</button>
+</form>

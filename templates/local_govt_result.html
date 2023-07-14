@@ -1,0 +1,23 @@
+<h1>Summed Total Result by Local Government</h1>
+<form method="GET" action="{% url 'summed_total_result' %}">
+  <label for="local_govt">Select Local Government:</label>
+  <select id="local_govt" name="local_govt">
+    {% for lga in local_govts %}
+      <option value="{{ lga.id }}">{{ lga.lga_name }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Get Result</button>
+</form>
+
+<div id="result-section">
+  {% if result %}
+    <h2>Summed Total Result for {{ selected_lga.lga_name }}</h2>
+    <ul>
+      {% for party, score in result.items %}
+        <li>Party: {{ party }}, Score: {{ score }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No result available for the selected local government.</p>
+  {% endif %}
+</div>

@@ -1,0 +1,19 @@
+<h1>Individual Polling Unit Result</h1>
+<form method="GET" action="{% url 'polling_unit_result' %}">
+  <label for="polling_unit_id">Polling Unit ID:</label>
+  <input type="text" id="polling_unit_id" name="polling_unit_id" required>
+  <button type="submit">Get Result</button>
+</form>
+
+<div id="result-section">
+  {% if results %}
+    <h2>Result for Polling Unit ID: {{ polling_unit_id }}</h2>
+    <ul>
+      {% for result in results %}
+        <li>Party: {{ result.party_abbreviation }}, Score: {{ result.party_score }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No result available for the entered polling unit ID.</p>
+  {% endif %}
+</div>
